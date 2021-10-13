@@ -1,0 +1,107 @@
+注释规范
+代码注释是对代码设计者、代码阅读者以及系统间调用提供了有效的帮助，最大限度的提高团队开发合作效率增强系统的可维护性
+一、原则
+1.  注释形式统一
+使用统一的注释风格，不要随意创建新的注释风格
+2. 注释准确简洁
+内容要简单、明了，防止注释的多义性，错误的注释不但无益反而有害
+
+二、注释条件
+1.  基本注释（必须加）
+a) 类（接口）的注释
+b) 方法的注释
+c) 全局变量的注释
+d) 字段/属性的注释
+Bean对象的getter、setter方法不需加注释
+
+2. 局部注释（必须加）
+a) 典型算法必须有注释。
+b) 在代码不明晰处必须有注释。
+c) 在代码修改处加上修改标识的注释。
+d) 在循环和逻辑分支组成的代码中加注释。
+e) 为他人提供的接口必须加详细注释。
+
+三、注释格式
+1. 单行(single-line)注释：//……
+2. 块(block)注释：/*……*/
+3. 文档注释：/**……*/
+
+四、javadoc 注释标签语法
+@author对类的说明标明开发该类模块的作者
+@version对类的说明标明该类模块的版本
+@see对类、属性、方法的说明参考转向，也就是相关主题
+@param对方法的说明对方法中某参数的说明
+@return对方法的说明对方法返回值的说明
+@exception对方法的说明对方法可能抛出的异常进行说明
+
+五、注释模板：
+1.  类（接口）注释
+/** 
+* @description: ${TODO}
+* @author ${USER}
+* @date ${DATE} ${TIME} 
+* @version 1.0
+*/
+
+2. 方法注释
+*
+ * @description: TODO
+ * @author $user$
+ * @date $date$ $time$
+ * @return $return$
+$param$
+ */
+
+3. 全局变量注释
+/** 全局变量 */
+
+4. 字段/属性注释
+// 字段
+
+5. 局部注释
+/**
+* 局部注释
+*/
+
+六、idea注释模板配置
+1. 设置类注释模板
+File→Settings→Editor→File and Code Templates→Includes→File Header
+ 
+/** 
+* @description: ${TODO}
+* @author ${USER}
+* @date ${DATE} ${TIME} 
+* @version 1.0
+*/
+
+2. 设置方法注释模板
+File→Settings→Editor→Live Templates
+a) 创建模板组
+名称自己定义
+ 
+
+b) 选中自己的模板组，在模板组下新建模板
+ 
+
+c) 配置模板信息
+ 
+1、设置模板名称，建议不要换，就是 * 号，注意：名称不能 / 开头，不然会导致获取params的 methodParameters() 等函数都失效
+2、模板描述，可以没有
+3、模板，注意开头是没有 /* 的
+*
+ * @description: TODO
+ * @author $user$
+ * @date $date$ $time$
+ * @return $return$
+$param$
+ */
+4、添加模板生成的地方，点开选择java
+5、设置模板快捷键，设置为回车
+6、编辑模板中的参数
+ 
+7、点apply完成
+用法： /** + 回车 即可
+
+param参数值：
+groovyScript("def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s]', '').split(',').toList(); for(i = 0; i < params.size(); i++) {result+=' * @param ' + params[i] + ((i < params.size() - 1) ? '\\n':'')}; return result", methodParameters())
+
